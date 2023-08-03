@@ -1,0 +1,64 @@
+{
+    "name": "zaphyr-org/http-client",
+    "description": "HTTP cURL client based on PSR-18.",
+    "keywords": [
+        "client",
+        "http",
+        "psr-18"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "merloxx",
+            "email": "merloxx@zaphyr.org",
+            "homepage": "https://merloxx.it",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "ext-curl": "*",
+        "psr/http-client": "^1.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-phpunit": "^1.2",
+        "phpunit/phpunit": "^10.0",
+        "roave/security-advisories": "dev-latest",
+        "squizlabs/php_codesniffer": "^4.0",
+        "zaphyr-org/http-message": "^1.0"
+    },
+    "provide": {
+        "psr/http-client-implementation": "^1.0"
+    },
+    "suggest": {
+        "zaphyr-org/http-message": "Lightweight and strict implementation of PSR-7 HTTP Message including PSR-17 HTTP Factories."
+    },
+    "autoload": {
+        "psr-4": {
+            "Zaphyr\\HttpClient\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Zaphyr\\HttpClientTests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "cs": "vendor/bin/phpcs --standard=PSR12 -n src",
+        "cbf": "vendor/bin/phpcbf --standard=PSR12 -n src",
+        "phpunit": "vendor/bin/phpunit --colors=always",
+        "phpstan": "vendor/bin/phpstan analyse --memory-limit 512M",
+        "test": [
+            "@phpunit",
+            "@phpstan",
+            "@cs"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
