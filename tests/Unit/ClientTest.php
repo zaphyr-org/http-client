@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zaphyr\HttpClientTest;
+namespace Zaphyr\HttpClientTests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
