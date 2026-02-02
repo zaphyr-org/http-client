@@ -1,8 +1,8 @@
-![License](https://img.shields.io/github/license/zaphyr-org/http-client?style=for-the-badge)
-![Version](https://img.shields.io/packagist/v/zaphyr-org/http-client?style=for-the-badge)
-![Downloads](https://img.shields.io/packagist/dt/zaphyr-org/http-client?style=for-the-badge)
-![Stars](https://img.shields.io/github/stars/zaphyr-org/http-client?style=for-the-badge)
-![Issues](https://img.shields.io/github/issues/zaphyr-org/http-client?style=for-the-badge)
+![License](https://img.shields.io/github/license/zaphyr-org/http-client)
+![Version](https://img.shields.io/packagist/v/zaphyr-org/http-client)
+![Issues](https://img.shields.io/github/issues/zaphyr-org/http-client)
+![Tests](https://github.com/zaphyr-org/http-client/actions/workflows/tests.yml/badge.svg)
+[![Codecov](https://codecov.io/gh/zaphyr-org/http-client/graph/badge.svg?token=2STP40KC71)](https://codecov.io/gh/zaphyr-org/http-client)
 
 # HTTP Client
 
@@ -10,7 +10,15 @@ HTTP cURL client based on [PSR-18](https://www.php-fig.org/psr/psr-18).
 
 ## System Requirements
 
-You need `PHP => 8.1.0` but the latest stable version of PHP is recommended.
+You need `PHP => 8.1` but the latest stable version of PHP is recommended.
+
+This package is continuously tested on the following PHP versions:
+
+- PHP 8.1
+- PHP 8.2
+- PHP 8.3
+- PHP 8.4
+- PHP 8.5
 
 ## Installation
 

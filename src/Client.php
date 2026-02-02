@@ -50,18 +50,27 @@ class Client implements ClientInterface
         $this->resolveUri($request);
 
         $handle = curl_init();
-        curl_setopt_array($handle, $this->options);
-        /** @var string|false $result */
-        $result = curl_exec($handle);
-        $info = curl_getinfo($handle);
-        curl_close($handle);
 
-
-        if ($result === false) {
-            throw new HttpClientException(curl_error($handle), curl_errno($handle));
+        if ($handle === false) {
+            throw new HttpClientException('Unable to initialize cURL');
         }
 
-        return $this->resolveResponse($info, $result);
+        try {
+            curl_setopt_array($handle, $this->options);
+
+            /** @var string|false $result */
+            $result = curl_exec($handle);
+
+            if ($result === false) {
+                throw new HttpClientException(curl_error($handle), curl_errno($handle));
+            }
+
+            $info = curl_getinfo($handle);
+
+            return $this->resolveResponse($info, $result);
+        } finally {
+            unset($handle);
+        }
     }
 
     /**
@@ -212,7 +221,6 @@ class Client implements ClientInterface
             }
 
             [$key, $values] = explode(': ', $header, 2);
-            // @todo prüfen ob nach "," wirklich nochmal "exploded" werden muss
             $headers[$key] = explode(', ', $values);
         }
 
