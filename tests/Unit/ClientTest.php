@@ -50,7 +50,7 @@ class ClientTest extends TestCase
 
     public function testSendRequestWithGetMethod(): void
     {
-        $request = new Request(uri: 'http://www.httpbin.org/get');
+        $request = new Request(uri: 'https://www.httpbin.org/get');
         $response = $this->client->sendRequest($request);
         $payload = $this->getResponsePayload($response);
 
@@ -61,7 +61,7 @@ class ClientTest extends TestCase
     public function testSendRequestWithPostMethod(): void
     {
         $stream = (new StreamFactory())->createStream(http_build_query(['foo' => 'bar']));
-        $request = new Request('POST', 'http://www.httpbin.org/post', $stream);
+        $request = new Request('POST', 'https://www.httpbin.org/post', $stream);
         $response = $this->client->sendRequest($request);
         $payload = $this->getResponsePayload($response);
 
@@ -74,7 +74,7 @@ class ClientTest extends TestCase
         $stream = $this->createMock(StreamInterface::class);
         $stream->expects(self::once())->method('isSeekable')->willReturn(false);
 
-        $request = new Request('POST', 'http://www.httpbin.org/post', $stream);
+        $request = new Request('POST', 'https://www.httpbin.org/post', $stream);
 
         $this->expectException(HttpClientException::class);
 
@@ -84,7 +84,7 @@ class ClientTest extends TestCase
     public function testSendRequestWithPutMethod(): void
     {
         $stream = (new StreamFactory())->createStream(http_build_query(['foo' => 'bar']));
-        $request = new Request('PUT', 'http://www.httpbin.org/put', $stream);
+        $request = new Request('PUT', 'https://www.httpbin.org/put', $stream);
         $response = $this->client->sendRequest($request);
         $payload = $this->getResponsePayload($response);
 
@@ -97,7 +97,7 @@ class ClientTest extends TestCase
         $stream = $this->createMock(StreamInterface::class);
         $stream->expects(self::once())->method('isSeekable')->willReturn(false);
 
-        $request = new Request('PUT', 'http://www.httpbin.org/post', $stream);
+        $request = new Request('PUT', 'https://www.httpbin.org/post', $stream);
 
         $this->expectException(HttpClientException::class);
 
@@ -106,7 +106,7 @@ class ClientTest extends TestCase
 
     public function testSendRequestWithPatchMethod(): void
     {
-        $request = new Request('PATCH', 'http://www.httpbin.org/patch');
+        $request = new Request('PATCH', 'https://www.httpbin.org/patch');
         $response = $this->client->sendRequest($request);
         $payload = $this->getResponsePayload($response);
 
@@ -116,7 +116,7 @@ class ClientTest extends TestCase
 
     public function testSendRequestWithDeleteMethod(): void
     {
-        $request = new Request('DELETE', 'http://www.httpbin.org/delete');
+        $request = new Request('DELETE', 'https://www.httpbin.org/delete');
         $response = $this->client->sendRequest($request);
         $payload = $this->getResponsePayload($response);
 
@@ -126,7 +126,7 @@ class ClientTest extends TestCase
 
     public function testSendRequestWithHeadMethod(): void
     {
-        $request = new Request('HEAD', 'http://www.httpbin.org/get');
+        $request = new Request('HEAD', 'https://www.httpbin.org/get');
         $response = $this->client->sendRequest($request);
 
         self::assertEquals(200, $response->getStatusCode());
@@ -135,7 +135,7 @@ class ClientTest extends TestCase
 
     public function testSendRequestWithBasicAuth(): void
     {
-        $request = new Request(uri: 'http://www.httpbin.org/basic-auth/john/secret');
+        $request = new Request(uri: 'https://www.httpbin.org/basic-auth/john/secret');
         $request = $request->withHeader('Authorization', 'Basic ' . (base64_encode('john:secret')));
         $response = $this->client->sendRequest($request);
         $payload = $this->getResponsePayload($response);
@@ -155,7 +155,7 @@ class ClientTest extends TestCase
     {
         $this->expectException(HttpClientException::class);
 
-        $this->client->sendRequest(new Request('INVALID', 'http://www.httpbin.org/get'));
+        $this->client->sendRequest(new Request('INVALID', 'https://www.httpbin.org/get'));
     }
 
     protected function getResponsePayload(ResponseInterface $response): array
